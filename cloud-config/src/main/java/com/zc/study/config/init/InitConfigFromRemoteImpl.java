@@ -26,11 +26,11 @@ public class InitConfigFromRemoteImpl implements InitConfigFromRemote{
         logger.info("如果需要从其他的配置中心获取配置，只需要新加InitConfigFromRemote的实现类，替换bean initConfigFromRemote 即可");
         logger.info("从注解中获取到Apollo的namespace，也就是本地配置类的类名");
         ConfigFile commonMDAConfigFile = ConfigService.getConfigFile("commonMDA", ConfigFileFormat.Properties);
-        System.out.println("commonMDAConfigFile*****************"+commonMDAConfigFile);
+        System.out.println("commonMDAConfigFile*****************\n"+commonMDAConfigFile);
         String content = commonMDAConfigFile.getContent();
-        System.out.println("content*****************  "+content);
+        System.out.println("content*****************\n"+content);
         // TODO: 2020/2/9
-        logger.info("接下来设置配置到本地内中");
+        logger.info("接下来设置配置到本地类中");
 
     }
 }
