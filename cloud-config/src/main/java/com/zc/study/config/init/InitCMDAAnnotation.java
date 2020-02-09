@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
+
 /**
  * @version v1.0
  * @ProjectName: cloud-demo
@@ -30,7 +32,7 @@ public class InitCMDAAnnotation implements ApplicationContextAware {
     private InitConfigFromRemote initConfigFromRemote;
 
     @Override
-    public void setApplicationContext(ApplicationContext context) {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         logger.info("开始CMDA配置初始化！..........................................");
         if (!StringUtils.equals("Y",cmdbFlag) && !StringUtils.equals("N",cmdbFlag)){
            logger.info("从远程获取配置的开关配置错误，开关取值为[Y,N],默认从本地获取....................................");
@@ -39,7 +41,8 @@ public class InitCMDAAnnotation implements ApplicationContextAware {
             logger.info("从远程获取配置开关取值为[Y,N],当前配置为【N】，从本地获取....................................");
             return;
         }
-        initConfigFromRemote.writeConstant();
+        initConfigFromRemote.writeConstant(applicationContext);
         logger.info("结束CMDA配置初始化！..........................................");
+
     }
 }

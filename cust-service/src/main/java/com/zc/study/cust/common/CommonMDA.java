@@ -1,7 +1,7 @@
 package com.zc.study.cust.common;
 
 
-import com.zc.study.config.annotation.AppModule;
+import com.zc.study.common.annotation.AppModule;
 
 /**
  * @version v1.0

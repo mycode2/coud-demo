@@ -1,4 +1,4 @@
-package com.zc.study.config.annotation;
+package com.zc.study.common.annotation;
 
 import java.lang.annotation.*;
 

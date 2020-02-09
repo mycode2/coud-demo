@@ -1,5 +1,6 @@
 package com.zc.study.config.init;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Service;
  */
 public interface InitConfigFromRemote {
 
-    public void writeConstant();
+    public void writeConstant(ApplicationContext applicationContext);
 
 }
