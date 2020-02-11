@@ -1,0 +1,16 @@
+apollo:
+  bootstrap:
+    enabled: true
+    # will inject 'application' and 'commonMDA' namespaces in bootstrap phase
+    namespaces: application,commonMDA
+spring:
+  application:
+    name: cust-service
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        serviceName: cust-service
+      host: 192.168.0.194
+      port: 8500
+basePackage: com.zc.study.cust.common

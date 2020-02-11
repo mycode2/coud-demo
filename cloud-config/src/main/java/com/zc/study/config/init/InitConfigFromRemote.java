@@ -3,6 +3,8 @@ package com.zc.study.config.init;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 /**
  * @version v1.0
  * @ProjectName: cloud-demo
@@ -13,6 +15,6 @@ import org.springframework.stereotype.Service;
  */
 public interface InitConfigFromRemote {
 
-    public void writeConstant(ApplicationContext applicationContext);
+    public void writeConstant(Set<String> changedKeys);
 
 }

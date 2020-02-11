@@ -22,9 +22,15 @@
         <dependency>
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-client</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <version>1.5.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-core</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.zc.study</groupId>
             <artifactId>cloud-common</artifactId>

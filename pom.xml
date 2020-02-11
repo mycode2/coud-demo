@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>cloud-common</module>
         <module>cloud-config</module>
         <module>cust-service</module>
     </modules>
