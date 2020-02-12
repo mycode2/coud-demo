@@ -15,6 +15,8 @@ public class Constants {
      */
     public static final String SEPARATOR_IN_PROPERTY_KEY = ".";
 
+    public static final String TAIL_A = "*.class";
+
     /**
      * 逗号分割符
      */

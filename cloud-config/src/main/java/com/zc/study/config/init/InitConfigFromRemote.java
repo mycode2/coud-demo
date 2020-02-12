@@ -1,8 +1,5 @@
 package com.zc.study.config.init;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
-
 import java.util.Set;
 
 /**
@@ -15,6 +12,6 @@ import java.util.Set;
  */
 public interface InitConfigFromRemote {
 
-    public void writeConstant(Set<String> changedKeys);
+    public void writeConstant(Set<String> changedKeys,String changeNamespace);
 
 }

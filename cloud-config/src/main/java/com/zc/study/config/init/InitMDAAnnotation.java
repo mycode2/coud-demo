@@ -34,10 +34,6 @@ public class InitMDAAnnotation implements ApplicationContextAware {
     private Logger logger = LoggerFactory.getLogger(InitMDAAnnotation.class);
 
     private ApplicationContext applicationContext;
-    /**
-     * 标识系统启动
-     */
-    private static Boolean ISSYSTEMBOOT = true;
 
     @Value("${cmdb.isCMDB.cmdbFlag}")
     private String cmdbFlag;
@@ -51,7 +47,7 @@ public class InitMDAAnnotation implements ApplicationContextAware {
     @PostConstruct
     private void initialize() {
         Config appConfig = ConfigService.getAppConfig();
-        refresher(appConfig.getPropertyNames());
+        refresher(appConfig.getPropertyNames(),null);
     }
 
     /**
@@ -60,12 +56,11 @@ public class InitMDAAnnotation implements ApplicationContextAware {
      */
     @ApolloConfigChangeListener
     public void onChange(ConfigChangeEvent changeEvent) {
-        ISSYSTEMBOOT = false; //系统启动了，只需要更新修改的配置
-        String changeEventNamespace = changeEvent.getNamespace();//修改配置之后的namespace
-        refresher(changeEvent.changedKeys());//改变过的配置key
+        String changeNamespace = changeEvent.getNamespace();//修改配置之后的namespace
+        refresher(changeEvent.changedKeys(),changeNamespace);//改变过的配置key
     }
 
-    private void refresher(Set<String> changedKeys) {
+    private void refresher(Set<String> changedKeys,String changeNamespace) {
         // 设置配置内中的值
         logger.info("开始CMDA配置初始化！..........................................");
         if (!StringUtils.equals("Y",cmdbFlag) && !StringUtils.equals("N",cmdbFlag)){
@@ -75,10 +70,16 @@ public class InitMDAAnnotation implements ApplicationContextAware {
             logger.info("从远程获取配置开关取值为[Y,N],当前配置为【N】，从本地获取....................................");
             return;
         }
-        initConfigFromRemote.writeConstant(changedKeys);
+        initConfigFromRemote.writeConstant(changedKeys,changeNamespace);
         logger.info("结束CMDA配置初始化！..........................................");
     }
 
+    /**
+     * 1、ApolloConfigChangeListener；
+     *
+     * @param applicationContext
+     * @throws BeansException
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         //初始化ApolloConfigChangeListener注解中value属性的默认值

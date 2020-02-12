@@ -14,8 +14,8 @@ import com.zc.study.common.annotation.AppModule;
 @AppModule(moduleName = "commonMDA")
 public class CommonMDA {
 
-    public static String PROD_SERVICE_OFFER_ID_COMP_PROD = new String("123");
-    public static String CERTNUMFIVE_REGIONID = new String("");
+    public static final String PROD_SERVICE_OFFER_ID_COMP_PROD = new String("123");
+    public static final String CERTNUMFIVE_REGIONID = new String("");
     public static String GROUP_4G_SRC_APP_KEY = new String("");
     public static String GROUP_DST_SYS_ID = new String("");
 

@@ -1,8 +1,10 @@
 package com.zc.study.common.utils;
 
 import com.zc.study.common.annotation.AppModule;
+import com.zc.study.common.constant.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -65,7 +67,7 @@ public class AnnotationUtils {
         appModuleSet.add("application");//默认application必不可少
         for (String basePackage : ListUtils.nvlList(basePackages)) {
             try {
-                List<String> classNames = ClazzUtil.findClassName(basePackage, "*.class");
+                List<String> classNames = ClazzUtils.findClassName(basePackage, Constants.TAIL_A);
                 for (String className : classNames) {
                     Class<?> aClass = Class.forName(className);
                     Annotation[] annotations = aClass.getAnnotations();
@@ -76,11 +78,6 @@ public class AnnotationUtils {
 
                         if (annotations[i].annotationType() == AppModule.class) {
                             AppModule appModule = (AppModule) annotations[i];
-                              /*InvocationHandler invocationHandler = Proxy.getInvocationHandler(AppModule.class);
-                              Field value = invocationHandler.getClass().getDeclaredField("value");
-                              value.setAccessible(true);
-                              Map<String, Object> memberValues = (Map<String, Object>) value.get(invocationHandler);
-                              Object Annotationvalue = memberValues.get("value");*/
                             appModuleSet.add(appModule.moduleName());
                         }
                     }
@@ -92,5 +89,22 @@ public class AnnotationUtils {
             }
         }
         return appModuleSet;
+    }
+
+    public static String getAPPModuleNameByClassName(String className) throws ClassNotFoundException {
+        Class<?> aClass = Class.forName(className);
+        Annotation[] annotations = aClass.getDeclaredAnnotations();
+        if (annotations==null || annotations.length==0){
+            return null;
+        }
+        for (int i = 0 ; i < annotations.length ; i++) {
+            if (annotations[i].annotationType()==AppModule.class){
+                AppModule appModule = (AppModule) annotations[i];
+                String moduleName = appModule.moduleName();
+                Assert.notNull(moduleName,"AppModule注解moduleName属性不能为空,位于"+className);
+                return moduleName;
+            }
+        }
+        return null;
     }
 }
