@@ -11,6 +11,7 @@
     <artifactId>cloud-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-common</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>

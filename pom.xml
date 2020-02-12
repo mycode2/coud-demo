@@ -12,6 +12,7 @@
     <artifactId>cloud-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-demo</name>
+    <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -64,12 +65,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.5.0</version>
         </dependency>
 
         <!--spring-boot-starter-test-->
